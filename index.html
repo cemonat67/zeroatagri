@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero@Agri - Pagmat Sürdürülebilirlik Yönetim Sistemi</title>
+    <meta http-equiv="refresh" content="0; url=./ZeroAtDesign_Pagmat/zeroatagriindec.html">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #005530, #00aa60);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .loading {
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+        
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .manual-link {
+            margin-top: 30px;
+        }
+        
+        .manual-link a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 24px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .manual-link a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🌱 Zero@Agri</div>
+        <div class="subtitle">Pagmat Sürdürülebilirlik Yönetim Sistemi</div>
+        <div class="spinner"></div>
+        <div class="loading">Ana sayfaya yönlendiriliyor...</div>
+        <div class="manual-link">
+            <a href="./ZeroAtDesign_Pagmat/zeroatagriindec.html">Manuel olarak devam et</a>
+        </div>
+    </div>
+    
+    <script>
+        // Fallback yönlendirme
+        setTimeout(function() {
+            window.location.href = './ZeroAtDesign_Pagmat/zeroatagriindec.html';
+        }, 2000);
+    </script>
+</body>
+</html>

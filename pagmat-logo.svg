@@ -1,0 +1,23 @@
+<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="40" cy="40" r="35" fill="#02154e" stroke="#f9ba00" stroke-width="3"/>
+  
+  <!-- Leaf symbol -->
+  <path d="M25 35 Q40 20 55 35 Q40 50 25 35" fill="#005530"/>
+  <path d="M25 45 Q40 30 55 45 Q40 60 25 45" fill="#f9ba00" opacity="0.8"/>
+  
+  <!-- Company name -->
+  <text x="85" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#02154e">
+    Pagmat
+  </text>
+  
+  <!-- Zero@Agri text -->
+  <text x="85" y="50" font-family="Arial, sans-serif" font-size="14" fill="#005530">
+    Zero@Agri
+  </text>
+  
+  <!-- Sustainability tagline -->
+  <text x="85" y="65" font-family="Arial, sans-serif" font-size="10" fill="#8b95a1">
+    Sustainable Agriculture Solutions
+  </text>
+</svg>

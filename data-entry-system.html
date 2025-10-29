@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagmat Veri Girişi Sistemi - Zero@Agri</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', sans-serif;
+            background: linear-gradient(135deg, #0a1929 0%, #001e3c 100%);
+            color: #e8eaed;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(20, 30, 48, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: rgba(13, 27, 42, 0.9);
+            color: #e8eaed;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #FFC107;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: #8b95a1;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 30px;
+            border-left: 5px solid #3498db;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .btn-pagmat {
+            background: #005530 !important;
+            color: white !important;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+
+        .btn-pagmat:hover {
+            background: #004428 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 85, 48, 0.3);
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-online { background: #27ae60; }
+        .status-offline { background: #e74c3c; }
+        .status-warning { background: #f39c12; }
+
+        .data-preview {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .tabs {
+            display: flex;
+            background: #ecf0f1;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .connection-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="connection-status">
+        <span class="status-indicator status-online"></span>
+        Sistem Bağlantısı: Aktif
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🌱 Pagmat Veri Girişi Sistemi</h1>
+            <p>Zero@Agri Sürdürülebilirlik Yönetim Sistemi - Admin Paneli</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Çevresel Metrikler -->
+            <div class="section">
+                <h2>🌍 Çevresel Metrikler</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="co2-total">Total CO₂e (ton)</label>
+                        <input type="number" id="co2-total" value="2847" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="co2-change">CO₂ Değişim (%)</label>
+                        <input type="number" id="co2-change" value="-8.3" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="energy-total">Enerji (MWh)</label>
+                        <input type="number" id="energy-total" value="1234" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="solar-percentage">Güneş Enerjisi (%)</label>
+                        <input type="number" id="solar-percentage" value="15" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="water-total">Su Kullanımı (m³)</label>
+                        <input type="number" id="water-total" value="8456" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="water-change">Su Tasarrufu (%)</label>
+                        <input type="number" id="water-change" value="-12.7" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="packaging-efficiency">Ambalaj Verimliliği (%)</label>
+                        <input type="number" id="packaging-efficiency" value="87.3" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="packaging-change">Ambalaj İyileştirme (%)</label>
+                        <input type="number" id="packaging-change" value="5.2" step="0.1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ar-Ge ve İnovasyon -->
+            <div class="section">
+                <h2>🔬 Ar-Ge ve İnovasyon</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="rd-projects">Aktif Ar-Ge Projeleri</label>
+                        <input type="number" id="rd-projects" value="15" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="university-collab">Üniversite İşbirlikleri</label>
+                        <input type="number" id="university-collab" value="6" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="eco-packages">Eco Ambalaj Tasarımları</label>
+                        <input type="number" id="eco-packages" value="8" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="sustainability-score">Sürdürülebilirlik Skoru (%)</label>
+                        <input type="number" id="sustainability-score" value="96" step="0.1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Üretim İzleme -->
+            <div class="section">
+                <h2>🏭 Üretim İzleme</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="line1-efficiency">Kuru Meyve Hattı Verimliliği (%)</label>
+                        <input type="number" id="line1-efficiency" value="96" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="line2-efficiency">Çikolata Kaplama Verimliliği (%)</label>
+                        <input type="number" id="line2-efficiency" value="93" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="daily-output">Günlük Üretim (ton)</label>
+                        <input type="number" id="daily-output" value="24.7" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="quality-score">Kalite Skoru (%)</label>
+                        <input type="number" id="quality-score" value="99.2" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="quality-change">Kalite İyileştirme (%)</label>
+                        <input type="number" id="quality-change" value="0.8" step="0.1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lojistik ve İhracat -->
+            <div class="section">
+                <h2>🚛 Lojistik ve İhracat</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="active-shipments">Aktif Sevkiyatlar</label>
+                        <input type="number" id="active-shipments" value="42" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="delivery-time">AB Teslimat Süresi (gün)</label>
+                        <input type="number" id="delivery-time" value="3.8" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="co2-per-km">CO₂ per km (g)</label>
+                        <input type="number" id="co2-per-km" value="58" step="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="co2-reduction">CO₂ Azaltımı (%)</label>
+                        <input type="number" id="co2-reduction" value="12" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="cost-efficiency">Maliyet Verimliliği (€/km/ton)</label>
+                        <input type="number" id="cost-efficiency" value="0.15" step="0.01">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kontrol Butonları -->
+            <div class="section">
+                <h2>⚙️ Sistem Kontrolleri</h2>
+                <div style="text-align: center;">
+                    <button class="btn btn-pagmat" onclick="openPagmatSystem()">
+                        🌱 Pagmat Veri Girişi Sistemi
+                    </button>
+                    <button class="btn btn-success" onclick="updateMainSystem()">
+                        📊 Ana Sistemi Güncelle
+                    </button>
+                    <button class="btn btn-warning" onclick="previewChanges()">
+                        👁️ Değişiklikleri Önizle
+                    </button>
+                    <button class="btn" onclick="resetToDefaults()">
+                        🔄 Varsayılanlara Dön
+                    </button>
+                    <button class="btn btn-danger" onclick="exportData()">
+                        💾 Verileri Dışa Aktar
+                    </button>
+                </div>
+                
+                <div id="status-messages"></div>
+                
+                <div class="data-preview" id="data-preview" style="display: none;">
+                    <h4>📋 Güncel Veri Önizlemesi:</h4>
+                    <pre id="preview-content"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Pagmat Veri Girişi Sistemi açma
+        function openPagmatSystem() {
+            showStatus('🌱 Pagmat Veri Girişi Sistemi açılıyor...', 'success');
+            // Ana dashboard'a yönlendirme
+            window.open('zeroatagriindec.html', '_blank');
+        }
+
+        // Veri güncelleme fonksiyonu
+        function updateMainSystem() {
+            const data = collectFormData();
+            
+            // Simüle edilmiş güncelleme
+            showStatus('Veriler güncelleniyor...', 'warning');
+            
+            setTimeout(() => {
+                // Ana sistem dosyasını güncelle (gerçek uygulamada API çağrısı)
+                updateZeroAgriSystem(data);
+                showStatus('✅ Ana sistem başarıyla güncellendi!', 'success');
+            }, 2000);
+        }
+
+        // Form verilerini toplama
+        function collectFormData() {
+            return {
+                environmental: {
+                    co2Total: parseFloat(document.getElementById('co2-total').value),
+                    co2Change: parseFloat(document.getElementById('co2-change').value),
+                    energyTotal: parseFloat(document.getElementById('energy-total').value),
+                    solarPercentage: parseFloat(document.getElementById('solar-percentage').value),
+                    waterTotal: parseFloat(document.getElementById('water-total').value),
+                    waterChange: parseFloat(document.getElementById('water-change').value),
+                    packagingEfficiency: parseFloat(document.getElementById('packaging-efficiency').value),
+                    packagingChange: parseFloat(document.getElementById('packaging-change').value)
+                },
+                rd: {
+                    projects: parseInt(document.getElementById('rd-projects').value),
+                    universityCollab: parseInt(document.getElementById('university-collab').value),
+                    ecoPackages: parseInt(document.getElementById('eco-packages').value),
+                    sustainabilityScore: parseFloat(document.getElementById('sustainability-score').value)
+                },
+                production: {
+                    line1Efficiency: parseFloat(document.getElementById('line1-efficiency').value),
+                    line2Efficiency: parseFloat(document.getElementById('line2-efficiency').value),
+                    dailyOutput: parseFloat(document.getElementById('daily-output').value),
+                    qualityScore: parseFloat(document.getElementById('quality-score').value),
+                    qualityChange: parseFloat(document.getElementById('quality-change').value)
+                },
+                logistics: {
+                    activeShipments: parseInt(document.getElementById('active-shipments').value),
+                    deliveryTime: parseFloat(document.getElementById('delivery-time').value),
+                    co2PerKm: parseInt(document.getElementById('co2-per-km').value),
+                    co2Reduction: parseFloat(document.getElementById('co2-reduction').value),
+                    costEfficiency: parseFloat(document.getElementById('cost-efficiency').value)
+                },
+                timestamp: new Date().toISOString()
+            };
+        }
+
+        // Değişiklikleri önizleme
+        function previewChanges() {
+            const data = collectFormData();
+            const preview = document.getElementById('data-preview');
+            const content = document.getElementById('preview-content');
+            
+            content.textContent = JSON.stringify(data, null, 2);
+            preview.style.display = 'block';
+            
+            showStatus('📋 Veri önizlemesi hazırlandı', 'success');
+        }
+
+        // Varsayılan değerlere dönme
+        function resetToDefaults() {
+            if (confirm('Tüm değerler varsayılan değerlere dönecek. Emin misiniz?')) {
+                // Pagmat'ın gerçek değerlerini yükle
+                loadPagmatDefaults();
+                showStatus('🔄 Varsayılan değerler yüklendi', 'warning');
+            }
+        }
+
+        // Verileri dışa aktarma
+        function exportData() {
+            const data = collectFormData();
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `pagmat_data_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showStatus('💾 Veriler başarıyla dışa aktarıldı', 'success');
+        }
+
+        // Ana sistemi güncelleme (simülasyon)
+        function updateZeroAgriSystem(data) {
+            // Gerçek uygulamada bu fonksiyon:
+            // 1. Ana HTML dosyasındaki KPI değerlerini günceller
+            // 2. Grafik verilerini yeniler
+            // 3. Veritabanını günceller
+            // 4. Cache'i temizler
+            
+            console.log('Ana sistem güncelleniyor:', data);
+            
+            // LocalStorage'a kaydet (demo amaçlı)
+            localStorage.setItem('pagmatData', JSON.stringify(data));
+        }
+
+        // Pagmat varsayılan değerlerini yükleme
+        function loadPagmatDefaults() {
+            const defaults = {
+                'co2-total': 2847,
+                'co2-change': -8.3,
+                'energy-total': 1234,
+                'solar-percentage': 15,
+                'water-total': 8456,
+                'water-change': -12.7,
+                'packaging-efficiency': 87.3,
+                'packaging-change': 5.2,
+                'rd-projects': 15,
+                'university-collab': 6,
+                'eco-packages': 8,
+                'sustainability-score': 96,
+                'line1-efficiency': 96,
+                'line2-efficiency': 93,
+                'daily-output': 24.7,
+                'quality-score': 99.2,
+                'quality-change': 0.8,
+                'active-shipments': 42,
+                'delivery-time': 3.8,
+                'co2-per-km': 58,
+                'co2-reduction': 12,
+                'cost-efficiency': 0.15
+            };
+
+            Object.keys(defaults).forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.value = defaults[id];
+                }
+            });
+        }
+
+        // Durum mesajları gösterme
+        function showStatus(message, type) {
+            const container = document.getElementById('status-messages');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            
+            container.innerHTML = '';
+            container.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        // Sayfa yüklendiğinde
+        window.addEventListener('load', function() {
+            // Kaydedilmiş verileri yükle
+            const savedData = localStorage.getItem('pagmatData');
+            if (savedData) {
+                showStatus('💾 Önceki veriler yüklendi', 'success');
+            }
+            
+            // Gerçek zamanlı bağlantı kontrolü
+            setInterval(checkConnection, 30000);
+        });
+
+        // Bağlantı kontrolü
+        function checkConnection() {
+            // Gerçek uygulamada API endpoint'ini kontrol eder
+            const status = document.querySelector('.connection-status .status-indicator');
+            const text = document.querySelector('.connection-status');
+            
+            // Simüle edilmiş bağlantı kontrolü
+            if (Math.random() > 0.1) { // %90 başarı oranı
+                status.className = 'status-indicator status-online';
+                text.innerHTML = '<span class="status-indicator status-online"></span>Sistem Bağlantısı: Aktif';
+            } else {
+                status.className = 'status-indicator status-warning';
+                text.innerHTML = '<span class="status-indicator status-warning"></span>Sistem Bağlantısı: Yavaş';
+            }
+        }
+
+        // Form değişikliklerini izleme
+        document.addEventListener('input', function(e) {
+            if (e.target.tagName === 'INPUT') {
+                // Değişiklik yapıldığında otomatik kaydet (isteğe bağlı)
+                const data = collectFormData();
+                localStorage.setItem('pagmatDataDraft', JSON.stringify(data));
+            }
+        });
+    </script>
+</body>
+</html>
