@@ -729,32 +729,56 @@
 }
 
 </style>
-<style id='za-modal-dark-patch-v2'>
+<style id='za-modal-dark-patch-v3'>
 
-/* === ZA modal dark v2 === */
-.modal, .modal * { --za-navy:#02154e; --za-navy-2:#001a4a; --za-white:#fff; --za-white-70:rgba(255,255,255,.75); }
+/* === ZA modal dark v3 (aggressive) === */
+.modal { --za-navy:#02154e; --za-navy-2:#001a4a; --za-white:#fff; --za-white-80:rgba(255,255,255,.8); --za-white-70:rgba(255,255,255,.7); }
 
 .modal .modal-dialog,
-.modal .modal-content{ background: var(--za-navy) !important; color: var(--za-white) !important; border: 1px solid rgba(255,255,255,.12) !important; }
+.modal .modal-content{ background:var(--za-navy)!important;color:var(--za-white)!important;border:1px solid rgba(255,255,255,.12)!important; }
 
 .modal .modal-header,
-.modal .modal-footer{ background: var(--za-navy) !important; border-color: rgba(255,255,255,.12) !important; color: var(--za-white) !important; }
+.modal .modal-footer{ background:var(--za-navy)!important;border-color:rgba(255,255,255,.12)!important;color:var(--za-white)!important; }
 
-.modal h1,.modal h2,.modal h3,.modal h4,.modal h5,.modal h6{ color: var(--za-white) !important; }
+.modal h1,.modal h2,.modal h3,.modal h4,.modal h5,.modal h6{ color:var(--za-white)!important; }
+.modal p,.modal .text-muted,.modal .kpi-text,.modal .kpi-value,.modal .stat-value,.modal .metric-value{ color:var(--za-white-80)!important; }
 
-.modal p,.modal .text-muted,.modal .kpi-text,.modal .kpi-value,
-.modal .stat-value,.modal .metric-value{ color: var(--za-white-70) !important; }
-
-.modal .card, .modal .card-body, .modal .list-group-item,
-.modal .kpi-card, .modal .details-card{
-  background: var(--za-navy-2) !important;
-  color: var(--za-white) !important;
-  border-color: rgba(255,255,255,.12) !important;
+/* Kartlar + listeler + “pastel” arkaplanlar */
+.modal .card,
+.modal .card>*,
+.modal .list-group-item,
+.modal .kpi-card,
+.modal .details-card,
+.modal .bg-light,
+.modal .bg-white,
+.modal [style*="background: #fff"],
+.modal [style*="background:#fff"],
+.modal [style*="background: rgb(255, 255, 255)"]{
+  background:var(--za-navy-2)!important;
+  color:var(--za-white)!important;
+  border-color:rgba(255,255,255,.14)!important;
 }
 
-.modal .badge{ background: rgba(255,255,255,.18) !important; color: var(--za-white) !important; border: 1px solid rgba(255,255,255,.28) !important; }
-.modal .btn, .modal .btn-outline{ color: var(--za-white) !important; border-color: rgba(255,255,255,.35) !important; }
-.modal .progress, .modal .progress-bar{ background: rgba(255,255,255,.12) !important; color: var(--za-white) !important; }
+/* İç panel/section şeritleri */
+.modal .section,
+.modal .panel,
+.modal .info-box{ background:var(--za-navy-2)!important;color:var(--za-white)!important;border-color:rgba(255,255,255,.14)!important; }
+
+/* Rozet / ikon / progress */
+.modal .badge{ background:rgba(255,255,255,.18)!important;color:var(--za-white)!important;border:1px solid rgba(255,255,255,.28)!important; }
+.modal .icon, .modal [class*="icon-"]{ color:var(--za-white)!important; opacity:.9; }
+.modal .progress{ background:rgba(255,255,255,.15)!important; }
+.modal .progress .progress-bar{ background:rgba(255,255,255,.75)!important;color:#0a0a0a!important; }
+
+/* Butonlar modal içinde okunur kalsın */
+.modal .btn, .modal .btn-outline, .modal .btn-secondary{
+  color:var(--za-white)!important;border-color:rgba(255,255,255,.35)!important;
+}
+.modal .btn:hover{ filter:brightness(1.1); }
+
+/* Kart başlıklarını biraz daha parlak yap */
+.modal .card .card-title,
+.modal .kpi-card .title{ color:var(--za-white)!important; }
 
 </style>
 </head>
