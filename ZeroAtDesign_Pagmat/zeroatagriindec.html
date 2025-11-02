@@ -744,6 +744,36 @@
 .modal hr{ border-color: rgba(255,255,255,0.18) !important; }
 
 </style>
+<style id='za-vspeers-color-patch'>
+
+/* === Zero@Agri - VS PEERS color patch === */
+.vs-peers, [id*="vs-peers"], [class*="vs-peers"],
+.modal .vs-peers, .modal [id*="vs-peers"], .modal [class*="vs-peers"]{
+  --za-orange:#f9ba00;
+  --za-black:#000;
+}
+.vs-peers .kpi-title, [id*="vs-peers"] .kpi-title, [class*="vs-peers"] .kpi-title,
+.vs-peers h3, [id*="vs-peers"] h3, [class*="vs-peers"] h3,
+.vs-peers h4, [id*="vs-peers"] h4, [class*="vs-peers"] h4,
+.vs-peers .card-title, [id*="vs-peers"] .card-title, [class*="vs-peers"] .card-title{
+  color: var(--za-orange) !important;
+  font-weight: 700 !important;
+}
+.vs-peers p, [id*="vs-peers"] p, [class*="vs-peers"] p,
+.vs-peers .kpi-value, [id*="vs-peers"] .kpi-value, [class*="vs-peers"] .kpi-value,
+.vs-peers .kpi-text, [id*="vs-peers"] .kpi-text, [class*="vs-peers"] .kpi-text,
+.vs-peers .stat-value, [id*="vs-peers"] .stat-value, [class*="vs-peers"] .stat-value,
+.vs-peers .metric-value, [id*="vs-peers"] .metric-value, [class*="vs-peers"] .metric-value{
+  color: var(--za-black) !important;
+}
+/* Kart/badge içi olası alt başlıklar */
+.vs-peers .badge, [id*="vs-peers"] .badge, [class*="vs-peers"] .badge{
+  color: var(--za-black) !important;
+  background: rgba(249,186,0,.15) !important;
+  border: 1px solid rgba(249,186,0,.35) !important;
+}
+
+</style>
 </head>
 <body>
     <div class="header">
