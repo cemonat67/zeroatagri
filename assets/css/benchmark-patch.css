@@ -1,0 +1,33 @@
+/* === Zero@Agri — Benchmark / vs Peers contrast fix === */
+
+/* Turuncu başlıklar */
+:where(.benchmark, .benchmark-card, .benchmark-modal, .modal, .modal-content)
+  :where(h1,h2,h3,.kpi-title,.metric-title,.stat-title){
+  color:#f9ba00 !important;
+  font-weight:700 !important;
+}
+
+/* Tüm metinler siyah (kart + modal) */
+:where(.benchmark, .benchmark-card, .benchmark-modal, .modal, .modal-content){
+  color:#000 !important;
+}
+:where(.benchmark, .benchmark-card, .benchmark-modal, .modal, .modal-content)
+  :where(p,span,li,small,div,.kpi-text,.kpi-value,.stat-value,.metric-value,.text-light,.text-white){
+  color:#000 !important;
+}
+
+/* Arkaplan/çerçeve */
+:where(.benchmark, .benchmark-card, .benchmark-modal, .modal-content, .card){
+  background:#fff !important;
+  border-color:#e6e8eb !important;
+}
+
+/* Link renkleri */
+:where(.benchmark, .benchmark-modal, .modal-content) a{
+  color:#0a2540 !important;
+  text-decoration:none !important;
+}
+:where(.benchmark, .benchmark-modal, .modal-content) a:hover{
+  color:#f9ba00 !important;
+  text-decoration:underline !important;
+}
