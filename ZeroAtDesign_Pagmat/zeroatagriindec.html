@@ -638,6 +638,66 @@
 }
 /* === End Benchmark patch === */
 
+
+/* === AUTO-CLONE: Compliance → Benchmark (1:1 görünüm) === */
+
+/* Kart iskeleti */
+.compliance-card, .compliance .card { }
+.benchmark-card, .benchmark .card {
+  background: var(--panel-bg, #0E1A2B) !important;
+  border: 1px solid var(--ring, #1c2a3e) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--card-shadow, 0 6px 16px rgba(0,0,0,.25)) !important;
+  color: var(--ink-contrast, #E8EEF5) !important;
+}
+
+/* Başlıklar */
+.compliance-card h3, .compliance .section-title { }
+.benchmark-card h3, .benchmark .section-title {
+  color: var(--ink-contrast, #E8EEF5) !important;
+  font-weight: 700 !important;
+}
+
+/* KPI başlığı (alt sarı başlıklar) */
+.compliance-card .kpi-title, .compliance .kpi-title { }
+.benchmark-card .kpi-title, .benchmark .kpi-title {
+  color: var(--brand-gold, #f9ba00) !important;
+  font-weight: 700 !important;
+}
+
+/* Değerler ve metinler */
+.compliance-card .kpi-value, .compliance-card .kpi-text,
+.compliance .kpi-value, .compliance .kpi-text,
+.compliance .metric, .compliance .stat-value { }
+.benchmark-card .kpi-value, .benchmark-card .kpi-text,
+.benchmark .kpi-value, .benchmark .kpi-text,
+.benchmark .metric, .benchmark .stat-value,
+.benchmark-card p, .benchmark p {
+  color: #E8EEF5 !important;
+}
+
+/* Rozet / pill stilleri */
+.compliance-card .pill, .compliance .pill { }
+.benchmark-card .pill, .benchmark .pill {
+  background: rgba(249,186,0,.12) !important;
+  color: #f9ba00 !important;
+  border: 1px solid rgba(249,186,0,.35) !important;
+}
+
+/* Bölüm başlık çizgileri/ayraçları varsa */
+.compliance .divider, .compliance .rule { }
+.benchmark .divider, .benchmark .rule {
+  background: #1c2a3e !important;
+}
+
+/* Modallerdeki benchmark (vs Peers) */
+#vs-peers-modal .benchmark-card {
+  background: var(--panel-bg, #0E1A2B) !important;
+  border: 1px solid var(--ring, #1c2a3e) !important;
+  color: var(--ink-contrast, #E8EEF5) !important;
+}
+/* === END AUTO-CLONE === */
+
 </style>
 </head>
 <body>
