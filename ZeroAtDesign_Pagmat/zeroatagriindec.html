@@ -574,7 +574,31 @@
                 grid-template-columns: 1fr;
             }
         }
-    </style>
+    
+/* === Benchmark KPI Styling (Zero@Agri) === */
+.benchmark-card h3,
+.benchmark-card .kpi-title,
+.benchmark h3,
+.benchmark .kpi-title,
+.benchmark .metric-title,
+.benchmark .stat-title {
+  color: #f9ba00 !important; /* Orange headers */
+  font-weight: 700 !important;
+}
+.benchmark-card p,
+.benchmark-card .kpi-value,
+.benchmark-card .kpi-text,
+.benchmark p,
+.benchmark .kpi-value,
+.benchmark .kpi-text,
+.benchmark .stat-value,
+.benchmark .metric-value {
+  color: #000 !important; /* Black text */
+  font-weight: 500 !important;
+}
+/* === End Patch === */
+
+</style>
 </head>
 <body>
     <div class="header">
