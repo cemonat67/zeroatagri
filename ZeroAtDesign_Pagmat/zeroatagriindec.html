@@ -699,51 +699,6 @@
 /* === END AUTO-CLONE === */
 
 </style>
-<style id='za-modal-dark-patch'>
-
-/* === Zero@Agri modal dark patch (navy + white) === */
-:root { --za-navy:#02154e; --za-ink:#ffffff; }
-.modal, .modal * { color-scheme: dark; }
-.modal .modal-content{
-  background: var(--za-navy) !important;
-  color: var(--za-ink) !important;
-  border: 1px solid rgba(255,255,255,0.15) !important;
-  box-shadow: 0 10px 40px rgba(0,0,0,.45) !important;
-}
-.modal .card, .modal .panel, .modal .kpi-card, .modal .stat-card, .modal .compare-card{
-  background: rgba(2,21,78,.88) !important;
-  color: var(--za-ink) !important;
-  border: 1px solid rgba(255,255,255,0.14) !important;
-}
-.modal .list-group-item{
-  background: transparent !important;
-  color: var(--za-ink) !important;
-  border-color: rgba(255,255,255,0.14) !important;
-}
-.modal h1, .modal h2, .modal h3, .modal h4,
-.modal .card-title, .modal .section-title,
-.modal p, .modal li, .modal .metric, .modal .metric-value,
-.modal .stat, .modal .stat-value, .modal .kpi, .modal .kpi-value {
-  color: var(--za-ink) !important;
-}
-.modal .badge, .modal .pill, .modal .chip{
-  background: rgba(255,255,255,0.16) !important;
-  color: var(--za-ink) !important;
-  border: 1px solid rgba(255,255,255,0.22) !important;
-}
-.modal .table{
-  color: var(--za-ink) !important;
-  --bs-table-bg: transparent !important;
-  --bs-table-color: var(--za-ink) !important;
-  border-color: rgba(255,255,255,0.14) !important;
-}
-.modal .progress{ background: rgba(255,255,255,0.15) !important; }
-.modal .progress-bar{ background: #f9ba00 !important; } /* turuncu şerit */
-.modal .text-muted{ color: rgba(255,255,255,0.75) !important; }
-.modal a{ color:#ffd666 !important; }
-.modal hr{ border-color: rgba(255,255,255,0.18) !important; }
-
-</style>
 <style id='za-vspeers-color-patch'>
 
 /* === Zero@Agri - VS PEERS color patch === */
@@ -772,6 +727,34 @@
   background: rgba(249,186,0,.15) !important;
   border: 1px solid rgba(249,186,0,.35) !important;
 }
+
+</style>
+<style id='za-modal-dark-patch-v2'>
+
+/* === ZA modal dark v2 === */
+.modal, .modal * { --za-navy:#02154e; --za-navy-2:#001a4a; --za-white:#fff; --za-white-70:rgba(255,255,255,.75); }
+
+.modal .modal-dialog,
+.modal .modal-content{ background: var(--za-navy) !important; color: var(--za-white) !important; border: 1px solid rgba(255,255,255,.12) !important; }
+
+.modal .modal-header,
+.modal .modal-footer{ background: var(--za-navy) !important; border-color: rgba(255,255,255,.12) !important; color: var(--za-white) !important; }
+
+.modal h1,.modal h2,.modal h3,.modal h4,.modal h5,.modal h6{ color: var(--za-white) !important; }
+
+.modal p,.modal .text-muted,.modal .kpi-text,.modal .kpi-value,
+.modal .stat-value,.modal .metric-value{ color: var(--za-white-70) !important; }
+
+.modal .card, .modal .card-body, .modal .list-group-item,
+.modal .kpi-card, .modal .details-card{
+  background: var(--za-navy-2) !important;
+  color: var(--za-white) !important;
+  border-color: rgba(255,255,255,.12) !important;
+}
+
+.modal .badge{ background: rgba(255,255,255,.18) !important; color: var(--za-white) !important; border: 1px solid rgba(255,255,255,.28) !important; }
+.modal .btn, .modal .btn-outline{ color: var(--za-white) !important; border-color: rgba(255,255,255,.35) !important; }
+.modal .progress, .modal .progress-bar{ background: rgba(255,255,255,.12) !important; color: var(--za-white) !important; }
 
 </style>
 </head>
